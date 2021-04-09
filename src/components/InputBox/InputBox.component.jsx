@@ -1,15 +1,18 @@
 import './InputBox.scss'
 import { Form, Col, Row, Button } from "react-bootstrap"
 import { useState } from 'react'
-import { addTodo } from '../../actions'
+import { addTodo } from '../../redux/actions'
+import { connect } from 'react-redux'
 
-function InputBox({dispatch}){
+function InputBox({addTodo, todo}){
     const [title , setTitle] = useState('')
     const [task , setTask] = useState('')
 
     const submitTask = ()=>{
-        dispatch(addTodo({title,task}))
-        //console.log(title + ' ' + task)
+        let newTask = {taskName: title, task: task}
+        addTodo(newTask)
+        // dispatch(addTodo({title,task}))
+        console.log(title + ' ' + task)
         setTitle('') 
         setTask('')
     }
@@ -47,4 +50,14 @@ function InputBox({dispatch}){
     )
 }
 
-export default InputBox
+const mapStateToProps = state => {
+    return {
+        todo: state.todo
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    addTodo: (todo) => dispatch(addTodo(todo)),
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputBox)

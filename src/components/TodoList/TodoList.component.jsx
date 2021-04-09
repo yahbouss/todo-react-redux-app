@@ -1,15 +1,8 @@
 import './TodoList.scss'
 import { Table } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-let todo = [
-    //{taskName: "5edma", task: "bi3 kaki"},
-    //{taskName: "test", task: "bi3 mtabga"},
-    //{taskName: "lol", task: "bi3 souki"}
-]
-
-
-
-function TodoList(){
+function TodoList({todo}){
     if (todo.length === 0) {
         return ( <h1 className="empty">Empty Tasks</h1>   )
     }else {
@@ -29,14 +22,23 @@ function TodoList(){
                     (<tr>
                         <td>{i++}</td>
                         <td>{todo.taskName}</td>
-                        <td>{todo.task}</td>
+                        <td>{todo.taskDesc}</td>
                     </tr>)
                     )
                 }
                 </tbody>
             </Table>
         </>
-    )}
+    )}   
 }
 
-export default TodoList
+const mapStateToProps = state => {
+    return {
+        todo: state.todo
+    }
+}
+
+
+
+export default connect(mapStateToProps)(TodoList)
+

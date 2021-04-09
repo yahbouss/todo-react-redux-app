@@ -4,9 +4,9 @@ import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducer from './reducers'
+import todoapp from './redux/reducers'
 
-const store = createStore(reducer)
+const store = createStore(todoapp)
 
 render(
   <Provider store={store}>
