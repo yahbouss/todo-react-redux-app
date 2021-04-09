@@ -9,10 +9,11 @@ function InputBox({addTodo, todo}){
     const [task , setTask] = useState('')
 
     const submitTask = ()=>{
-        let newTask = {taskName: title, task: task}
+        let newTask = {taskName: title, taskDesc: task}
         addTodo(newTask)
         // dispatch(addTodo({title,task}))
-        console.log(title + ' ' + task)
+        console.log(newTask)
+        console.log(todo)
         setTitle('') 
         setTask('')
     }

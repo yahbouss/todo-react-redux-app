@@ -19,7 +19,7 @@ function TodoList({todo}){
                 </thead>
                 <tbody>
                 {todo.map(todo => 
-                    (<tr>
+                    (<tr key={i}>
                         <td>{i++}</td>
                         <td>{todo.taskName}</td>
                         <td>{todo.taskDesc}</td>
